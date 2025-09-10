@@ -10,6 +10,7 @@ float numbers_average(int *numbers,
                       int size);           // calcula a média e retorna o valor
 void numbers_show(int *numbers, int size); // exibe os valores alocados
 void numbers_destroy(int *numbers);        // desaloca a variável alocada
+// Funções que adicionei
 int maior_numero(int * numbers, int size); // encontra o maior número do conjunto de dados 
 int menor_numero(int * numbers, int size); // encontra o menor número do conjunto de dados
 void numeros_pares(int * numbers, int size); // exibe os números pares do conjunto de dados
@@ -95,7 +96,7 @@ void numeros_pares(int * numbers, int size) { // Função Adicional
 
 void numeros_impares(int * numbers, int size) { // Função Adicional
   if (numbers != NULL) {
-    printf("ímpares: ");
+    printf("Ímpares: ");
     for (int i = 0; i < size; i++){
       if (numbers[i] % 2 != 0){
         printf("%d, ", numbers[i]);
@@ -108,7 +109,7 @@ void numeros_impares(int * numbers, int size) { // Função Adicional
 // *************************************************************************
 
 int main() {
-  srand(time(NULL)); // Inicializa o geraor aleatório
+  srand(time(NULL)); // Inicializa o gerador aleatório
   int *numbers; // Ponteiro
   int size=rand() % 100; // Ordem aleatória
   
