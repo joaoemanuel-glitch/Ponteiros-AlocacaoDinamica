@@ -10,6 +10,8 @@ float numbers_average(int *numbers,
                       int size);           // calcula a média e retorna o valor
 void numbers_show(int *numbers, int size); // exibe os valores alocados
 void numbers_destroy(int *numbers);        // desaloca a variável alocada
+int maior_numero(int * numbers, int size); // encontra o maior número do conjunto de dados 
+int menor_numero(int * numbers, int size); // encontra o menor número do conjunto de dados
 // **************************************************************************
 
 // **************************** Implementação ******************************
@@ -53,17 +55,50 @@ void numbers_show(int *numbers, int size) {
 
 void numbers_destroy(int *numbers) { free(numbers); }
 
+int maior_numero(int * numbers, int size) { // Função Adicional
+  int maior = numbers[0];
+  if (numbers != NULL) {
+    for (int i = 0; i < size; i++){ //Primeiro, lê-se todos os números
+      if (numbers[i] > maior){ //Caso o número lido seja o maior, será armazenado na variável "maior"
+        maior = numbers[i];
+      } 
+    }
+  }
+  return maior;
+}
+
+int menor_numero(int * numbers, int size) { // Função Adicional
+  int menor = numbers[0];
+  if (numbers != NULL) {
+    for (int i = 0; i < size; i++){ //Primeiro, lê-se todos os números
+      if (numbers[i] < menor){ //Caso o número lido seja o menor, será armazenado na variável "menor"
+        menor = numbers[i];
+      } 
+    }
+  }
+  return menor;
+}
+
 // *************************************************************************
 
 int main() {
-  srand(time(NULL));
-  int *numbers; 
-  int size=rand() % 100; 
-  numbers = numbers_create(size);
-  numbers_read(numbers, size);
-  float avg = numbers_average(numbers, size); 
-  numbers_show (numbers,size);
-  printf("Media = %.2f", avg);
+  srand(time(NULL)); // Inicializa o geraor aleatório
+  int *numbers; // Ponteiro
+  int size=rand() % 100; // Ordem aleatória
+  
+  numbers = numbers_create(size); // Aloca os espaços
+
+  numbers_read(numbers, size);  // Lê os números
+  numbers_show (numbers, size); // Mostra os números
+  float avg = numbers_average(numbers, size); // Calcula a média dos números
+  printf("Media = %.2f\n", avg); // Mostrando a média
+  
+  int maior = maior_numero(numbers, size); // Analisa o maior número
+  printf("Maior número: %d\n", maior); //Mostrando o maior número
+  int menor = menor_numero(numbers, size); // Analisa o menor número
+  printf("Menor número: %d\n", menor); //Mostrando o menor número
+
   numbers_destroy(numbers);
+  
   return 0;
 }
