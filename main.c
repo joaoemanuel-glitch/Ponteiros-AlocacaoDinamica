@@ -10,11 +10,12 @@ float numbers_average(int *numbers,
                       int size);           // calcula a média e retorna o valor
 void numbers_show(int *numbers, int size); // exibe os valores alocados
 void numbers_destroy(int *numbers);        // desaloca a variável alocada
-// Funções que adicionei
+// Funções adicionais
 int maior_numero(int * numbers, int size); // encontra o maior número do conjunto de dados 
 int menor_numero(int * numbers, int size); // encontra o menor número do conjunto de dados
 void numeros_pares(int * numbers, int size); // exibe os números pares do conjunto de dados
 void numeros_impares(int * numbers, int size); // exibe os números ímpares do conjunto de dados
+void busca_por_valores(int * numbers, int size); // Função com tarefa específica: Permite a busca por um valor
 // **************************************************************************
 
 // **************************** Implementação ******************************
@@ -58,7 +59,8 @@ void numbers_show(int *numbers, int size) {
 
 void numbers_destroy(int *numbers) { free(numbers); }
 
-int maior_numero(int * numbers, int size) { // Função Adicional
+int maior_numero(int * numbers, int size) // Função adicional
+{
   int maior = numbers[0];
   if (numbers != NULL) {
     for (int i = 0; i < size; i++){ //Primeiro, lê-se todos os números
@@ -70,7 +72,8 @@ int maior_numero(int * numbers, int size) { // Função Adicional
   return maior;
 }
 
-int menor_numero(int * numbers, int size) { // Função Adicional
+int menor_numero(int * numbers, int size) // Função adicional
+{
   int menor = numbers[0];
   if (numbers != NULL) {
     for (int i = 0; i < size; i++){ //Primeiro, lê-se todos os números
@@ -82,7 +85,8 @@ int menor_numero(int * numbers, int size) { // Função Adicional
   return menor;
 }
 
-void numeros_pares(int * numbers, int size) { // Função Adicional
+void numeros_pares(int * numbers, int size) // Função adicional
+{
   if (numbers != NULL) {
     printf("Pares: ");
     for (int i = 0; i < size; i++){
@@ -94,13 +98,37 @@ void numeros_pares(int * numbers, int size) { // Função Adicional
   }
 }
 
-void numeros_impares(int * numbers, int size) { // Função Adicional
+void numeros_impares(int * numbers, int size) // Função adicional
+{
   if (numbers != NULL) {
     printf("Ímpares: ");
     for (int i = 0; i < size; i++){
       if (numbers[i] % 2 != 0){
         printf("%d, ", numbers[i]);
       }
+    }
+    printf("\n");
+  }
+}
+
+void busca_por_valores(int * numbers, int size) // Função adicional
+{ // Função adicional
+  int numero, encontrado, j;
+  if (numbers != NULL) {
+    printf("Digite um número que você deseja buscar: ");
+    scanf("%d", &numero);
+    for (int i = 0; i < size; i++){
+      if (numbers[i] == numero){
+        encontrado = numbers[i];
+        j = i;
+      }
+    }
+    if (encontrado == numero){
+      printf("Número encontrado!\n");
+      printf("Posição do vetor: numbers[%d]", j);
+      }
+    else{
+      printf("Número não encontrado!\n");
     }
     printf("\n");
   }
@@ -126,6 +154,7 @@ int main() {
   printf("Menor número: %d\n", menor); // Mostrando o menor número
   numeros_pares(numbers, size); // Mostra os números pares
   numeros_impares(numbers, size); // Mostra os números pares
+  busca_por_valores(numbers, size); // Pede ao usuário para buscar por um valor
 
   numbers_destroy(numbers);
   
