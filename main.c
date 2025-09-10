@@ -12,6 +12,8 @@ void numbers_show(int *numbers, int size); // exibe os valores alocados
 void numbers_destroy(int *numbers);        // desaloca a variável alocada
 int maior_numero(int * numbers, int size); // encontra o maior número do conjunto de dados 
 int menor_numero(int * numbers, int size); // encontra o menor número do conjunto de dados
+void numeros_pares(int * numbers, int size); // exibe os números pares do conjunto de dados
+void numeros_impares(int * numbers, int size); // exibe os números ímpares do conjunto de dados
 // **************************************************************************
 
 // **************************** Implementação ******************************
@@ -79,6 +81,30 @@ int menor_numero(int * numbers, int size) { // Função Adicional
   return menor;
 }
 
+void numeros_pares(int * numbers, int size) { // Função Adicional
+  if (numbers != NULL) {
+    printf("Pares: ");
+    for (int i = 0; i < size; i++){
+      if (numbers[i] % 2 == 0){
+        printf("%d, ", numbers[i]);
+      }
+    }
+    printf("\n");
+  }
+}
+
+void numeros_impares(int * numbers, int size) { // Função Adicional
+  if (numbers != NULL) {
+    printf("ímpares: ");
+    for (int i = 0; i < size; i++){
+      if (numbers[i] % 2 != 0){
+        printf("%d, ", numbers[i]);
+      }
+    }
+    printf("\n");
+  }
+}
+
 // *************************************************************************
 
 int main() {
@@ -89,14 +115,16 @@ int main() {
   numbers = numbers_create(size); // Aloca os espaços
 
   numbers_read(numbers, size);  // Lê os números
-  numbers_show (numbers, size); // Mostra os números
+  numbers_show(numbers, size); // Mostra os números
   float avg = numbers_average(numbers, size); // Calcula a média dos números
   printf("Media = %.2f\n", avg); // Mostrando a média
   
   int maior = maior_numero(numbers, size); // Analisa o maior número
-  printf("Maior número: %d\n", maior); //Mostrando o maior número
+  printf("Maior número: %d\n", maior); // Mostrando o maior número
   int menor = menor_numero(numbers, size); // Analisa o menor número
-  printf("Menor número: %d\n", menor); //Mostrando o menor número
+  printf("Menor número: %d\n", menor); // Mostrando o menor número
+  numeros_pares(numbers, size); // Mostra os números pares
+  numeros_impares(numbers, size); // Mostra os números pares
 
   numbers_destroy(numbers);
   
